@@ -9,28 +9,22 @@ import firebase from 'firebase/app';
   providedIn: 'root'
 })
 export class FirebaseService {
-  private students: Observable<Student[]>;
-  private studentCollection: AngularFirestoreCollection<Student>;
-  private student: Student;
-  constructor(private afs: AngularFirestore) {
-    this.studentCollection = this.afs.collection<Student>('students');
-    // this.noteCollection = this.afs.collection<Note>('notes',ref => ref.where('uid', '==', 'large'));
 
-    this.students = this.studentCollection.snapshotChanges().pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data();
-            // console.log(data)
-            const id = a.payload.doc.id;
-            // console.log("run after aadding new node? ")
-            return { id, ...data };
-          });
-        })
-    );
+  usertype ="";
+  uid='';
+  constructor(private afs: AngularFirestore) {
+
   }
-  setCurrentUser(){
-    //var user = firebase.auth().currentUser;
-    //var uid=user.uid;
-    this.students.subscribe(console.log);
+
+  setUID(uid){
+    this.uid = uid;
+    console.log(this.uid);
+  }
+  setUsertype(type){
+    this.usertype=type;
+  }
+
+  getUsertype(){
+    return this.usertype;
   }
 }

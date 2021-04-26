@@ -13,7 +13,7 @@ export class StudentProfilePage implements OnInit {
   constructor(private fbService: FirebaseService, private router: Router) { }
 
   ngOnInit() {
-    this.fbService.setCurrentUser();
+    //this.fbService.setCurrentUser();
   }
 
 }

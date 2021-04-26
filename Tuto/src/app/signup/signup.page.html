@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
+  	 <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
     <ion-title>signup</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<ion-item>
+      <ion-label color="primary" position="floating">email</ion-label>
+      <ion-input placeholder = "email must be formatted conventionally" type="text" [(ngModel)]="user.email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">password</ion-label>
+      <ion-input type="text" [(ngModel)]="user.password" required></ion-input>
+    </ion-item>
 
+    <ion-item>
+    <ion-label>User Type</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="user.type" >
+      <ion-select-option value="student">Student</ion-select-option>
+      <ion-select-option value="tutor">Tutor</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <h3> Don't forget to SIGN IN after signing up! </h3>
+
+    <ion-button class="submit-btn" expand="block" type="submit" (click)="signUpWithEmail(user.email,user.password)">Sign up</ion-button>
 </ion-content>

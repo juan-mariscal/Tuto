@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button slot = "start" [routerLink]="'/home'">
+    <ion-icon name="home-outline"></ion-icon>
+    </ion-button>
     <ion-title>tutor-profile</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -32,7 +35,7 @@
       <ion-item> Review #3 </ion-item>
       <ion-item> Review #4 </ion-item>
       <ion-item> Review #5 </ion-item>
-      <ion-button [routerLink] = "/view-reviews/"> See more </ion-button>
+      <ion-button [routerLink] = "'/view-reviews'"> See more </ion-button>
     </ion-card-content>
   </ion-card>
 
