@@ -12,6 +12,9 @@ export class FirebaseService {
 
   usertype ="";
   uid='';
+  isTutor: boolean = false;
+  showLogin: boolean  = true;
+
   constructor(private afs: AngularFirestore) {
 
   }
@@ -26,5 +29,9 @@ export class FirebaseService {
 
   getUsertype(){
     return this.usertype;
+  }
+
+  getUserID() {
+    return this.uid;
   }
 }
