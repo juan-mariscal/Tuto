@@ -112,7 +112,7 @@ export class SigninPage implements OnInit {
     console.log(user)
         self.fbService.setUID(user.uid);
         // self.fbService.load_my_orders();
-        self.fbService.setUsertype("learner");
+        self.fbService.setUsertype("student");
       this.router.navigateByUrl('/');
 
 
