@@ -45,7 +45,7 @@ export class SignupPage implements OnInit {
 	});;
 
 
-    this.router.navigateByUrl('/');
+      this.router.navigate(["/new-account"])
 
 }
 }

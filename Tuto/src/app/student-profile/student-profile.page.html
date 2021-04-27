@@ -5,16 +5,16 @@
     <ion-icon name="home-outline"></ion-icon>
     </ion-button>
 
-    <ion-title>student-profile</ion-title>
+    <ion-title>Your Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
     <ion-avatar slot="start">
-      <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">
+      <img src="{{student.pfp}}">
     </ion-avatar>
-    <ion-label>First Name Last Name</ion-label>
+    <ion-label>{{student.name}}</ion-label>
   </ion-item>
 
   <ion-card>
@@ -22,11 +22,17 @@
       <ion-card-title>Contact Info</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Phone number: ###-###-####
-      Email: email@email.com
       <ion-item>
-        Name: {{name}}
+        Phone number: {{student.phone_number}}
       </ion-item>
+      <ion-item>
+        Email: {{student.email}}
+      </ion-item>
+      <ion-card-subtitle> Message </ion-card-subtitle>
+      <ion-item>
+        {{student.message}}
+      </ion-item>
+
     </ion-card-content>
   </ion-card>
  <ion-card>

@@ -9,11 +9,24 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./student-profile.page.scss'],
 })
 export class StudentProfilePage implements OnInit {
-  name = "hi"
+  student: Student = {
+    id: '',
+    name: '',
+    dob: '',
+    pfp: '',
+    phone_number: '',
+    email: '',
+    message: '',
+    uid: ''
+  }
   constructor(private fbService: FirebaseService, private router: Router) { }
 
   ngOnInit() {
-    //this.fbService.setCurrentUser();
+    console.log(this.fbService.getUsertype());
+    console.log(this.fbService.getUserID());
+    this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
+          this.student = studentData;
+        });
   }
 
 }

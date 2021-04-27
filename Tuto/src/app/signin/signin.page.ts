@@ -29,7 +29,7 @@ export class SigninPage implements OnInit {
     this.afAuth.signInWithEmailAndPassword(email, password).then(user => {
       //navigate to user profile
       console.log(user.user.email, user.user.uid);
-      
+
       var user1 = firebase.auth().currentUser;
       console.log(user1.uid)
       this.fbService.setUID(user.user.uid);
@@ -53,7 +53,7 @@ export class SigninPage implements OnInit {
             .catch(function(error) {
                 console.log("Error getting info: ", error);
             });
-            this.router.navigateByUrl('/');
+              this.router.navigate(["/home"])
     })
     .catch(error => {
       console.log(error)
@@ -72,7 +72,7 @@ export class SigninPage implements OnInit {
         if (result.credential) {
           /** @type {firebase.auth.OAuthCredential} */
           var credential = result.credential;
-    
+
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           // var token = credential.accessToken;
           // ...
@@ -82,8 +82,8 @@ export class SigninPage implements OnInit {
         console.log(user)
         self.fbService.setUID(user.uid);
         //this.fbService.load_my_orders();
-        this.router.navigateByUrl('/');
-    
+          this.router.navigate(["/home"])
+
       }).catch((error) => {
         // Handle Errors here.
         var errorCode = error.code;
@@ -113,7 +113,7 @@ export class SigninPage implements OnInit {
         self.fbService.setUID(user.uid);
         // self.fbService.load_my_orders();
         self.fbService.setUsertype("student");
-      this.router.navigateByUrl('/');
+        this.router.navigate(["/home"])
 
 
     // ...
