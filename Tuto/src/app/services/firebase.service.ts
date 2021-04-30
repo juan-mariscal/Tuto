@@ -35,6 +35,9 @@ export class FirebaseService {
         })
     );
   }
+   /*createStudent(student: Student){//: Promise<DocumentReference>{
+     return this.studentCollection.doc(this.uid).set(student);
+   }*/
   getStudent(id: string): Observable<Student> {
     return this.studentCollection.doc<Student>(id).valueChanges().pipe(
         take(1),

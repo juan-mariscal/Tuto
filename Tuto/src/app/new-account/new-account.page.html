@@ -5,5 +5,25 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Enter Name" [(ngModel)]="account.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Enter DOB (MM/DD/YYYY)" [(ngModel)]="account.dob"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Enter Phone Number (XXX-XXX-XXXX)" [(ngModel)]="account.phone_number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Enter Valid Email" [(ngModel)]="account.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Profile Picture" [(ngModel)]="account.pfp"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="6" [(ngModel)]="account.message" placeholder="Enter additional informaiton, caption, or description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-button color="primary" expand="full" (click)="createAccount()">Create Account!</ion-button>
 </ion-content>

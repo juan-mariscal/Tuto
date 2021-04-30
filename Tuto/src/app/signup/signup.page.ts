@@ -38,14 +38,16 @@ export class SignupPage implements OnInit {
 		      .catch(function(error) {
 		          console.error("Error adding document: ", error);
 		      });
-
+          /*This is how you write custom id to firestore
+    db.collection("students").doc(user.user.uid).set({
+      name: "hello there"
+    })*/
 	})
 	.catch(error => {
 		console.log(error)
 	});;
 
-
-      this.router.navigate(["/new-account"])
-
+  //removed this so that the html page routes instead
+      //this.router.navigate(["/new-account"])
 }
 }

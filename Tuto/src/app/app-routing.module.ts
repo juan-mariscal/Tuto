@@ -12,15 +12,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
   {
-    path: 'new-account',
+    path: 'new-account/:email/:password/:type',
     loadChildren: () => import('./new-account/new-account.module').then( m => m.NewAccountPageModule)
   },
   {
