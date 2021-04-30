@@ -20,9 +20,8 @@ export class FirebaseService {
   private tutors: Observable<Tutor[]>;
   private tutorCollection: AngularFirestoreCollection<Tutor>;
   constructor(private afs: AngularFirestore) {
+    //Sets up Students
     this.studentCollection = this.afs.collection<Student>('students');
-    // this.noteCollection = this.afs.collection<Note>('notes',ref => ref.where('uid', '==', 'large'));
-
     this.students = this.studentCollection.snapshotChanges().pipe(
         map(actions => {
           return actions.map(a => {
@@ -34,10 +33,22 @@ export class FirebaseService {
           });
         })
     );
+
+    //Sets up Tutors
+    this.tutorCollection = this.afs.collection<Tutor>('tutors');
+    this.tutors = this.tutorCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            // console.log(data)
+            const id = a.payload.doc.id;
+            // console.log("run after aadding new node? ")
+            return { id, ...data };
+          });
+        })
+    );
   }
-   /*createStudent(student: Student){//: Promise<DocumentReference>{
-     return this.studentCollection.doc(this.uid).set(student);
-   }*/
+
   getStudent(id: string): Observable<Student> {
     return this.studentCollection.doc<Student>(id).valueChanges().pipe(
         take(1),
@@ -47,28 +58,23 @@ export class FirebaseService {
         })
     );
   }
-  /*load_my_orders(){ //after user login, call this function
-    var user = firebase.auth().currentUser;
-    //console.log(user.uid);
-    var uid=user.uid;
-    // this.noteCollection = this.afs.collection<Note>('notes');
-    this.Collection = this.afs.collection<Order>('orders',ref => ref.where('uid', '==', uid));
-
-    this.orders = this.orderCollection.snapshotChanges().pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data();
-            // console.log(data)
-            const id = a.payload.doc.id;
-            console.log(id)
-            // console.log("run after aadding new node? ")
-            return { id, ...data };
-          });
+  getTutor(id: string): Observable<Tutor> {
+    return this.tutorCollection.doc<Tutor>(id).valueChanges().pipe(
+        take(1),
+        map(tutor => {
+          tutor.id = id;
+          return tutor;
         })
     );
-    //console.log("orders  loaded...")
-  }*/
-
+  }
+  editStudent(student: Student): Promise<void> {
+    return this.studentCollection.doc(this.uid).update({ name: student.name, dob: student.dob, pfp: student.pfp,
+    phone_number: student.phone_number, email: student.email, message: student.message });
+  }
+  editTutor(tutor: Tutor): Promise<void> {
+    return this.tutorCollection.doc(this.uid).update({ name: tutor.name, dob: tutor.dob, pfp: tutor.pfp,
+    phone_number: tutor.phone_number, email: tutor.email, message: tutor.message });
+  }
   setUID(uid){
     this.uid = uid;
     console.log(this.uid);

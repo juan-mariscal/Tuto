@@ -25,7 +25,6 @@
       <ion-select-option value="tutor">Tutor</ion-select-option>
     </ion-select>
   </ion-item>
-  <h3> Don't forget to SIGN IN after signing up! </h3>
 
     <ion-button class="submit-btn" expand="block" type="submit" [routerLink] = "['/new-account/', user.email, user.password, user.type]" (click)="signUpWithEmail(user.email,user.password)">Sign up</ion-button>
 </ion-content>

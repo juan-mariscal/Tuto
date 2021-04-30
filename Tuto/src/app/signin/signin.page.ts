@@ -14,7 +14,7 @@ import { FirebaseService } from '../services/firebase.service';
 export class SigninPage implements OnInit {
 
   // Default demo user account
-  user = {email:"luffy@gmail.com", password:"OnePiece"}
+  user = {email:"juanfmariscal1@gmail.com", password:"password"}
 
   constructor(public afAuth: AngularFireAuth,
     private fbService: FirebaseService,

@@ -5,5 +5,25 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="{{tutor.name}}" [(ngModel)]="tutor.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="{{tutor.dob}}" [(ngModel)]="tutor.dob"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="{{tutor.pfp}}" [(ngModel)]="tutor.pfp"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="{{tutor.phone_number}}" [(ngModel)]="tutor.phone_number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="{{tutor.email}}" [(ngModel)]="tutor.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="6" [(ngModel)]="tutor.message" placeholder="{{tutor.message}}"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-button color="primary" expand="full" (click)="updateStudent()">Update</ion-button>
 </ion-content>
