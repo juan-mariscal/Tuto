@@ -5,6 +5,7 @@ import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@
 import {map, take} from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class FirebaseService {
   uid='';
   isTutor: boolean = false;
   showLogin: boolean  = true;
+  //hideMe: boolean = true;
 
   private students: Observable<Student[]>;
   private studentCollection: AngularFirestoreCollection<Student>;
@@ -22,7 +24,7 @@ export class FirebaseService {
   private tutors: Observable<Tutor[]>;
   private tutorCollection: AngularFirestoreCollection<Tutor>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private router: Router) {
     //Sets up Students
     this.studentCollection = this.afs.collection<Student>('students');
     this.students = this.studentCollection.snapshotChanges().pipe(
@@ -59,6 +61,7 @@ export class FirebaseService {
 
   //Returns specific student
   getStudent(id: string): Observable<Student> {
+    //return this.studentCollection.doc(id).valueChanges().pipe(
     return this.studentCollection.doc<Student>(id).valueChanges().pipe(
         take(1),
         map(student => {
@@ -106,4 +109,5 @@ export class FirebaseService {
   getUserID() {
     return this.uid;
   }
+
 }

@@ -9,7 +9,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+  hideMe = true;
+
   user= {email:"", password:"",type:""};
+  
   constructor(public afAuth: AngularFireAuth,private router:Router) { }
 
   ngOnInit() {

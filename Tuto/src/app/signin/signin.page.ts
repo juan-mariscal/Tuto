@@ -12,6 +12,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
+  hideMe = true;
 
   // Default demo user account
   user = {email:"juanfmariscal1@gmail.com", password:"password"}
@@ -58,6 +59,7 @@ export class SigninPage implements OnInit {
     .catch(error => {
       console.log(error)
     });
+    this.hideMe = false;
     this.fbService.showLogin = false;
   }
 

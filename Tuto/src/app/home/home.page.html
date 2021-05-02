@@ -1,8 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Home</ion-title>
+
+    <ion-buttons slot="end" *ngIf="!hideMe">
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+        Logout
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -12,10 +18,6 @@
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button [routerLink]="'/student-profile'"> Student Profile Page </ion-button>
   <ion-button [routerLink]="'/student-list'">Student List</ion-button>
-  <ion-button [routerLink]="'/tutor-profile'"> Tutor Profile Page </ion-button>
   <ion-button [routerLink]="'/tutor-list'">Tutor List</ion-button>
-  <ion-button [routerLink] = "'/signup'"> Sign Up </ion-button>
-  <ion-button [routerLink] = "'/signin'"> Sign In </ion-button>
 </ion-content>
