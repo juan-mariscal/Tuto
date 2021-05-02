@@ -19,6 +19,8 @@ export class WriteReviewPage implements OnInit {
     uid: ''
   }
 
+  account: Account;
+
   constructor(public afAuth: AngularFireAuth, private fbService: FirebaseService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -26,7 +28,16 @@ export class WriteReviewPage implements OnInit {
   }
 
   createReview() {
-    
+    //console.log(this.student.uid);
+    //this.review.uid = this.student.uid;
+    var user1 = firebase.auth().currentUser;
+    this.review.uid = user1.uid;
+
+    this.fbService.addReview(this.review).then((doc) => {
+      console.log(doc);
+      this.router.navigateByUrl('/home');
+    }, err => {
+    });
   }
 
 }
