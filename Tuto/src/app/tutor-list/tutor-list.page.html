@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tutor-list</ion-title>
+    <ion-button slot = "start" [routerLink]="'/home'">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Tutor List</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+
+    <ion-item *ngFor="let tutor of (tutors | async)">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="tutor.pfp"></ion-img>
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{tutor.name}}</h2>
+        <p>{{tutor.email}}</p>
+      </ion-label>
+
+      <ion-label>{{tutor.message}}</ion-label>
+
+
+    </ion-item>
+
+
+
+  </ion-list>
 
 </ion-content>
