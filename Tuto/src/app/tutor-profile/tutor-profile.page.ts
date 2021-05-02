@@ -78,6 +78,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
       }
   }
   ionViewDidEnter() {
+    this.fbService.load_reviews(this.tutor.uid);
     console.log('ionViewDidEnter');
     console.log(this.fbService.checkIfFavorited(this.tutor));
     if(this.fbService.checkIfFavorited(this.tutor)){

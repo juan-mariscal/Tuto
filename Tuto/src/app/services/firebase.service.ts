@@ -75,9 +75,9 @@ export class FirebaseService {
       );
   }
 
-  load_reviews(){
-    var user = firebase.auth().currentUser;
-    var uid=user.uid;
+  load_reviews(uid: string){
+    //var user = firebase.auth().currentUser;
+    //var uid=user.uid;
     this.reviewsCollection = this.afs.collection<Review>('reviews',ref => ref.where('uid', '==', uid));
 
     this.reviews = this.reviewsCollection.snapshotChanges().pipe(
