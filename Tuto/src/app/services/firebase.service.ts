@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Account, Student, Tutor} from '../modal/Account';
+import {Account, Student, Tutor, Review} from '../modal/Account';
 import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
 import {map, take} from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -27,6 +27,9 @@ export class FirebaseService {
   private favTutors: Observable<Tutor[]>;
   private favTutorCollection: AngularFirestoreCollection<Tutor>;
 
+  private reviews: Observable<Review[]>;
+  private reviewsCollection: AngularFirestoreCollection<Review>;
+
   constructor(private afs: AngularFirestore, private router: Router) {
     //Sets up Students
     this.studentCollection = this.afs.collection<Student>('students');
@@ -48,39 +51,58 @@ export class FirebaseService {
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
-            // console.log(data)
             const id = a.payload.doc.id;
-            // console.log("run after aadding new node? ")
             return { id, ...data };
           });
         })
     );
   }
+
   load_fav_tutors(){
     var user = firebase.auth().currentUser;
-  //console.log(user.uid);
-  var uid=user.uid;
-  // this.noteCollection = this.afs.collection<Note>('notes');
-  this.favTutorCollection = this.afs.collection<Tutor>('favorites',ref => ref.where('uid', '==', uid));
+    var uid=user.uid;
+    this.favTutorCollection = this.afs.collection<Tutor>('reviews',ref => ref.where('uid', '==', uid));
 
-  this.favTutors = this.favTutorCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          // console.log(data)
-          const id = a.payload.doc.id;
-          console.log(id)
-          // console.log("run after aadding new node? ")
-          return { id, ...data };
-        });
-      })
-  );
-  //console.log("orders  loaded...")
+    this.favTutors = this.favTutorCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+           const data = a.payload.doc.data();
+           const id = a.payload.doc.id;
+           console.log(id)
+           return { id, ...data };
+         });
+        })
+      );
   }
+
+  load_reviews(){
+    var user = firebase.auth().currentUser;
+    var uid=user.uid;
+    this.reviewsCollection = this.afs.collection<Review>('reviews',ref => ref.where('uid', '==', uid));
+
+    this.reviews = this.reviewsCollection.snapshotChanges().pipe(
+       map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            console.log(id)
+           return { id, ...data };
+          });
+        })
+      );
+  }
+
   //Returns list of all students
   getStudentList(): Observable<Student[]> {
     return this.students;
   }
+
+  addReview(review: Review): Promise<DocumentReference> {
+    var user1 = firebase.auth().currentUser;
+    review.uid = this.uid;
+    return this.reviewsCollection.add(review);
+  }
+
   addFavorite(tutor: Tutor): Promise<DocumentReference> {
     var user1 = firebase.auth().currentUser;
     tutor.uid = this.uid
@@ -102,6 +124,7 @@ export class FirebaseService {
   getFavorites(): Observable<Tutor[]> {
     return this.favTutors;
   }
+
   //Returns specific student
   getStudent(id: string): Observable<Student> {
     //return this.studentCollection.doc(id).valueChanges().pipe(
@@ -129,18 +152,22 @@ export class FirebaseService {
         })
     );
   }
+
   editStudent(student: Student): Promise<void> {
     return this.studentCollection.doc(this.uid).update({ name: student.name, dob: student.dob, pfp: student.pfp,
     phone_number: student.phone_number, email: student.email, message: student.message });
   }
+
   editTutor(tutor: Tutor): Promise<void> {
     return this.tutorCollection.doc(this.uid).update({ name: tutor.name, dob: tutor.dob, pfp: tutor.pfp,
     phone_number: tutor.phone_number, email: tutor.email, message: tutor.message });
   }
+
   setUID(uid){
     this.uid = uid;
     console.log(this.uid);
   }
+
   setUsertype(type){
     this.usertype=type;
   }
