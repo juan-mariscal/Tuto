@@ -50,6 +50,14 @@ const routes: Routes = [
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
   },
+  {
+    path: 'student-list',
+    loadChildren: () => import('./student-list/student-list.module').then( m => m.StudentListPageModule)
+  },
+  {
+    path: 'tutor-list',
+    loadChildren: () => import('./tutor-list/tutor-list.module').then( m => m.TutorListPageModule)
+  },
 
 ];
 
