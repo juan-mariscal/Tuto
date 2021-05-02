@@ -1,0 +1,23 @@
+:root {
+  --ion-color-content: #c9bb87;
+  --ion-color-content-rgb: 201,187,135;
+  --ion-color-content-contrast: #000000;
+  --ion-color-content-contrast-rgb: 0,0,0;
+  --ion-color-content-shade: #b1a577;
+  --ion-color-content-tint: #cec293;
+}
+
+.ion-color-content {
+  --ion-color-base: var(--ion-color-content);
+  --ion-color-base-rgb: var(--ion-color-content-rgb);
+  --ion-color-contrast: var(--ion-color-content-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-content-contrast-rgb);
+  --ion-color-shade: var(--ion-color-content-shade);
+  --ion-color-tint: var(--ion-color-content-tint);
+}
+
+
+ion-button {
+  --background: var(--charcoal, #36454f);
+  --color: #222;
+}

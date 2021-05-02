@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {Account, Student, Tutor} from '../modal/Account'
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
@@ -8,7 +8,7 @@ import { FirebaseService } from '../services/firebase.service';
   templateUrl: './tutor-profile.page.html',
   styleUrls: ['./tutor-profile.page.scss'],
 })
-export class TutorProfilePage implements OnInit {
+export class TutorProfilePage implements OnInit,AfterViewInit {
   //default src: http://s3.amazonaws.com/37assets/svn/765-default-avatar.png
   tutor: Tutor = {
     id: '',
@@ -20,7 +20,7 @@ export class TutorProfilePage implements OnInit {
     message: '',
     uid: ''
   }
-  constructor(private fbService: FirebaseService, private router: Router) { }
+  constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     console.log(this.fbService.getUsertype());
@@ -28,6 +28,14 @@ export class TutorProfilePage implements OnInit {
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
+  }
+  ngAfterViewInit(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(id) {
+      this.fbService.getTutor(id).subscribe(tutorData => {
+        this.tutor = tutorData;
+      });
+    }
   }
   ionViewWillEnter(){
     console.log("we are here");
