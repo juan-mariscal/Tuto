@@ -32,7 +32,7 @@ export interface Tutor {
 
 export interface Review {
   id?: any;
-  rating: number;
+  rating: any;
   message: string;
   uid: string;
 }

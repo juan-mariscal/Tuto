@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Review } from '../modal/Account';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FirebaseService } from '../services/firebase.service';
+import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-write-review',
@@ -7,9 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WriteReviewPage implements OnInit {
 
-  constructor() { }
+  review: Review = {
+    id: '',
+    rating: '',
+    message: '',
+    uid: ''
+  }
+
+  constructor(public afAuth: AngularFireAuth, private fbService: FirebaseService,
+    private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+  }
+
+  createReview() {
+    
   }
 
 }
