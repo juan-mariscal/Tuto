@@ -21,20 +21,29 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
     message: '',
     uid: ''
   }
-  constructor(private fbService: FirebaseService, private router: Router) { }
+  constructor(private fbService: FirebaseService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.fbService.getUsertype());
-    console.log(this.fbService.getUserID());
-    this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
-          this.student = studentData;
-        });
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(id) {
+      this.fbService.getStudent(id).subscribe(studentData => {
+        this.student = studentData;
+      });
+    }
+    // console.log(this.fbService.getUsertype());
+    // console.log(this.fbService.getUserID());
+    // this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
+    //       this.student = studentData;
+    //     });
   }
   ngAfterViewInit(): void {
-    /*console.log("we are here");
-    this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
-          this.student = studentData;
-        });*/
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(id) {
+      this.fbService.getStudent(id).subscribe(studentData => {
+        this.student = studentData;
+      });
+    }
   }
   ionViewWillEnter(){
     console.log("we are here");

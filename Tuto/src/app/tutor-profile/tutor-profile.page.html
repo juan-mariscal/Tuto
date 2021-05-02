@@ -15,7 +15,7 @@
     <ion-label>{{tutor.name}}</ion-label>
   </ion-item>
 
-  <ion-card>
+  <ion-card id="tutor-profile">
     <ion-card-header>
       <ion-card-title>Contact Info</ion-card-title>
     </ion-card-header>
@@ -48,5 +48,5 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button  color="warning" [routerLink]="'/edit-tutor-profile'">Edit</ion-button>
+  <ion-button  color="warning" [routerLink]="'/edit-tutor-profile/'+tutor.id">Edit</ion-button>
 </ion-content>

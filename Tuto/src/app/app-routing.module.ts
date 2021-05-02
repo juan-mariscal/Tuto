@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./new-account/new-account.module').then( m => m.NewAccountPageModule)
   },
   {
-    path: 'tutor-profile',
+    path: 'tutor-profile/:id',
     loadChildren: () => import('./tutor-profile/tutor-profile.module').then( m => m.TutorProfilePageModule)
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./view-reviews/view-reviews.module').then( m => m.ViewReviewsPageModule)
   },
   {
-    path: 'student-profile',
+    path: 'student-profile/:id',
     loadChildren: () => import('./student-profile/student-profile.module').then( m => m.StudentProfilePageModule)
   },
   {
@@ -46,7 +46,8 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
-  },  {
+  },
+  {
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
   },
