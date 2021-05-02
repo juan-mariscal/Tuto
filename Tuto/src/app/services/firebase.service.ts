@@ -24,6 +24,9 @@ export class FirebaseService {
   private tutors: Observable<Tutor[]>;
   private tutorCollection: AngularFirestoreCollection<Tutor>;
 
+  private favTutors: Observable<Tutor[]>;
+  private favTutorCollection: AngularFirestoreCollection<Tutor>;
+
   constructor(private afs: AngularFirestore, private router: Router) {
     //Sets up Students
     this.studentCollection = this.afs.collection<Student>('students');
@@ -53,12 +56,39 @@ export class FirebaseService {
         })
     );
   }
+  load_fav_tutors(){
+    var user = firebase.auth().currentUser;
+  //console.log(user.uid);
+  var uid=user.uid;
+  // this.noteCollection = this.afs.collection<Note>('notes');
+  this.favTutorCollection = this.afs.collection<Tutor>('favorites',ref => ref.where('uid', '==', uid));
 
+  this.favTutors = this.favTutorCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          // console.log(data)
+          const id = a.payload.doc.id;
+          console.log(id)
+          // console.log("run after aadding new node? ")
+          return { id, ...data };
+        });
+      })
+  );
+  //console.log("orders  loaded...")
+  }
   //Returns list of all students
   getStudentList(): Observable<Student[]> {
     return this.students;
   }
-
+  addFavorite(tutor: Tutor): Promise<DocumentReference> {
+    var user1 = firebase.auth().currentUser;
+    tutor.uid = this.uid
+    return this.favTutorCollection.add(tutor);
+  }
+  getFavorites(): Observable<Tutor[]> {
+    return this.favTutors;
+  }
   //Returns specific student
   getStudent(id: string): Observable<Student> {
     //return this.studentCollection.doc(id).valueChanges().pipe(

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {Account, Student, Tutor} from '../modal/Account'
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
-
+import {Observable} from 'rxjs';
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.page.html',
@@ -22,16 +22,19 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
     uid: ''
   }
   ownUser = false;
+  private tutors: Observable<Tutor[]>;
   constructor(private fbService: FirebaseService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     //const id = this.activatedRoute.snapshot.paramMap.get('id');
     //if(id) {
+
     console.log("initial")
       this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
         this.student = studentData;
       });
+      this.tutors = this.fbService.getFavorites();
       /*if(id == this.fbService.getUserID()){
         this.ownUser = true;*/
     //  }
@@ -50,6 +53,7 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
       });
       if(id == this.fbService.getUserID()){
         this.ownUser = true;
+        this.tutors = this.fbService.getFavorites();
       }
       else{
         this.ownUser = false;
@@ -65,6 +69,7 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
       });
       if(id == this.fbService.getUserID()){
         this.ownUser = true;
+        this.tutors = this.fbService.getFavorites();
       }
       else{
         this.ownUser = false;
@@ -75,6 +80,7 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
           this.student = studentData;
         });
         this.ownUser = true;
+        this.tutors = this.fbService.getFavorites();
       }
     }
 }

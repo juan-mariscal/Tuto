@@ -49,6 +49,9 @@ export class SigninPage implements OnInit {
                   if(type == 'tutor') {
                     self.fbService.isTutor = true;
                   }
+                  if(type == 'student'){
+                    self.fbService.load_fav_tutors();
+                  }
                 });
             })
             .catch(function(error) {

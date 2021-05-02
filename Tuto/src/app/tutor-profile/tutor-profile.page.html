@@ -4,7 +4,11 @@
     <ion-icon name="home-outline"></ion-icon>
     </ion-button>
     <ion-title>Your Account</ion-title>
+    <ion-button slot = "end" (click) = "favorited()" *ngIf="!ownUser">
+    <ion-icon name='{{starName}}'></ion-icon>
+    </ion-button>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>

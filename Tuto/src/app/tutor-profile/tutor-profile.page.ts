@@ -21,6 +21,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     uid: ''
   }
   ownUser = false;
+  starName = 'star-outline'
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -68,5 +69,9 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
         });
         this.ownUser = true;
       }
+  }
+  favorited(){
+    this.starName = "star"
+    this.fbService.addFavorite(this.tutor);
   }
 }
