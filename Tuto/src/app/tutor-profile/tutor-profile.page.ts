@@ -20,14 +20,19 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     message: '',
     uid: ''
   }
+  ownUser = false;
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(!id){
     console.log(this.fbService.getUsertype());
     console.log(this.fbService.getUserID());
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
+    this.ownUser = true;
+  }
   }
   ngAfterViewInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -35,12 +40,33 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
+      if(id == this.fbService.getUserID()){
+        this.ownUser = true;
+      }
+      else{
+        this.ownUser = false;
+      }
     }
   }
   ionViewWillEnter(){
     console.log("we are here");
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(id) {
+      this.fbService.getTutor(id).subscribe(tutorData => {
+        this.tutor = tutorData;
+      });
+      if(id == this.fbService.getUserID()){
+        this.ownUser = true;
+      }
+      else{
+        this.ownUser = false;
+      }
+    }
+    else {
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
+        this.ownUser = true;
+      }
   }
 }

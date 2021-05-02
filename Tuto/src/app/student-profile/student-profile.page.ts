@@ -21,16 +21,21 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
     message: '',
     uid: ''
   }
+  ownUser = false;
   constructor(private fbService: FirebaseService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if(id) {
-      this.fbService.getStudent(id).subscribe(studentData => {
+    //const id = this.activatedRoute.snapshot.paramMap.get('id');
+    //if(id) {
+    console.log("initial")
+      this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
         this.student = studentData;
       });
-    }
+      /*if(id == this.fbService.getUserID()){
+        this.ownUser = true;*/
+    //  }
+    //}
     // console.log(this.fbService.getUsertype());
     // console.log(this.fbService.getUserID());
     // this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
@@ -43,12 +48,33 @@ export class StudentProfilePage implements OnInit, AfterViewInit {
       this.fbService.getStudent(id).subscribe(studentData => {
         this.student = studentData;
       });
+      if(id == this.fbService.getUserID()){
+        this.ownUser = true;
+      }
+      else{
+        this.ownUser = false;
+      }
     }
   }
   ionViewWillEnter(){
     console.log("we are here");
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if(id) {
+      this.fbService.getStudent(id).subscribe(studentData => {
+        this.student = studentData;
+      });
+      if(id == this.fbService.getUserID()){
+        this.ownUser = true;
+      }
+      else{
+        this.ownUser = false;
+      }
+    }
+    else{
     this.fbService.getStudent(this.fbService.getUserID()).subscribe(studentData => {
           this.student = studentData;
         });
-  }
+        this.ownUser = true;
+      }
+    }
 }
