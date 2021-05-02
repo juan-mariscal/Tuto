@@ -29,3 +29,10 @@ export interface Tutor {
   message: string;
   uid:string;
 }
+
+export interface Review {
+  id?: any;
+  rating: number;
+  message: string;
+  uid: string;
+}
