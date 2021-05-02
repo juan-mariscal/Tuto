@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./edit-tutor-profile/edit-tutor-profile.module').then( m => m.EditTutorProfilePageModule)
   },
   {
-    path: 'view-reviews',
+    path: 'view-reviews/:id',
     loadChildren: () => import('./view-reviews/view-reviews.module').then( m => m.ViewReviewsPageModule)
   },
   {
