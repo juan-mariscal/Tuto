@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {Account, Student, Tutor} from '../modal/Account'
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
-
+import {Observable} from 'rxjs';
 @Component({
   selector: 'app-tutor-profile',
   templateUrl: './tutor-profile.page.html',
@@ -22,13 +22,15 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
   }
   ownUser = false;
   starName = 'star-outline'
+
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log("ngOnInit")
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(!id){
-    console.log(this.fbService.getUsertype());
-    console.log(this.fbService.getUserID());
+    console.log("am myself");
+    console.log("subscribing data");
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
@@ -36,12 +38,15 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
   }
   }
   ngAfterViewInit(): void {
+    console.log("ngAfterViewInit")
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
+      console.log("subscribing data");
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
       if(id == this.fbService.getUserID()){
+        console.log("am myself");
         this.ownUser = true;
       }
       else{
@@ -50,13 +55,15 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     }
   }
   ionViewWillEnter(){
-    console.log("we are here");
+    console.log("ionViewWillEnter");
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
+      console.log("subscribing data");
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
       if(id == this.fbService.getUserID()){
+        console.log("am myself");
         this.ownUser = true;
       }
       else{
@@ -70,8 +77,22 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
         this.ownUser = true;
       }
   }
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter');
+    console.log(this.fbService.checkIfFavorited(this.tutor));
+    if(this.fbService.checkIfFavorited(this.tutor)){
+      console.log("favorited")
+      this.starName = "star";
+    }
+    else{
+      console.log("not favorited")
+      this.starName = "star-outline";
+    }
+  }
   favorited(){
-    this.starName = "star"
-    this.fbService.addFavorite(this.tutor);
+    if(this.starName == "star-outline"){
+      this.starName = "star"
+      this.fbService.addFavorite(this.tutor);
+    }
   }
 }

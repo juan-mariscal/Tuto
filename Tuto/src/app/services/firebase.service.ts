@@ -86,6 +86,19 @@ export class FirebaseService {
     tutor.uid = this.uid
     return this.favTutorCollection.add(tutor);
   }
+  checkIfFavorited(temp_tutor: Tutor){
+    console.log("temp_tutor uid: " + temp_tutor.uid)
+    this.favTutors.forEach(tutors=>{
+      tutors.forEach(tutor=>{
+        console.log("tutor id: " + tutor.id)
+        if(tutor.id == temp_tutor.uid){
+          console.log("returning true")
+          return true;
+        }
+      })
+    })
+    return false;
+  }
   getFavorites(): Observable<Tutor[]> {
     return this.favTutors;
   }
