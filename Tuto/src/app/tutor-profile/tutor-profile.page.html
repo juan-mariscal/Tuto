@@ -48,5 +48,6 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-button color="primary" [routerLink]="'/write-review/'+tutor.id">Write Review</ion-button>
   <ion-button  color="warning" [routerLink]="'/edit-tutor-profile/'+tutor.id" *ngIf = "ownUser">Edit</ion-button>
 </ion-content>
