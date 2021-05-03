@@ -27,7 +27,8 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     id: '',
     rating: '',
     message: '',
-    uid: ''
+    suid: '',
+    tuid:''
   }
 
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -38,6 +39,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     if(!id){
     console.log("am myself");
     console.log("subscribing data");
+    this.fbService.load_reviews(this.review.tuid)
     this.fbService.getReview(id).subscribe(reviewData => {
       this.review = reviewData;
     })
@@ -52,6 +54,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     console.log("ngAfterViewInit")
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
+      this.fbService.load_reviews(this.review.tuid)
       console.log("subscribing data");
       this.fbService.getReview(id).subscribe(reviewData => {
         this.review = reviewData;
@@ -73,6 +76,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     console.log("ionViewWillEnter");
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
+      this.fbService.load_reviews(this.review.tuid)
       console.log("subscribing data");
       this.fbService.getReview(id).subscribe(reviewData => {
         this.review = reviewData;

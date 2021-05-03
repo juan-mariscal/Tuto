@@ -16,7 +16,8 @@ export class WriteReviewPage implements OnInit {
     id: '',
     rating: '',
     message: '',
-    uid: ''
+    suid: '',
+    tuid: ''
   }
 
   account: Account;
@@ -25,13 +26,14 @@ export class WriteReviewPage implements OnInit {
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.review.tuid = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   createReview() {
     //console.log(this.student.uid);
     //this.review.uid = this.student.uid;
     var user1 = firebase.auth().currentUser;
-    this.review.uid = user1.uid;
+    this.review.suid = user1.uid;
 
     this.fbService.addReview(this.review).then((doc) => {
       console.log(doc);

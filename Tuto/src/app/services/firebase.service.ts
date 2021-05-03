@@ -88,9 +88,8 @@ export class FirebaseService {
   }
 
   load_reviews(uid: string){
-    var user = firebase.auth().currentUser;
-    var uid=user.uid;
-    this.reviewsCollection = this.afs.collection<Review>('reviews',ref => ref.where('uid', '==', uid));
+
+    this.reviewsCollection = this.afs.collection<Review>('reviews',ref => ref.where('tuid', '==', uid));
 
     this.reviews = this.reviewsCollection.snapshotChanges().pipe(
        map(actions => {
@@ -111,7 +110,7 @@ export class FirebaseService {
 
   addReview(review: Review): Promise<DocumentReference> {
     var user1 = firebase.auth().currentUser;
-    review.uid = this.uid;
+    //review.suid = this.suid;
     return this.reviewsCollection.add(review);
   }
 
@@ -138,7 +137,9 @@ export class FirebaseService {
   getFavorites(): Observable<Tutor[]> {
     return this.favTutors;
   }
-
+  getReviews(): Observable<Review[]>{
+    return this.reviews;
+  }
   //Returns specific student
   getStudent(id: string): Observable<Student> {
     //return this.studentCollection.doc(id).valueChanges().pipe(

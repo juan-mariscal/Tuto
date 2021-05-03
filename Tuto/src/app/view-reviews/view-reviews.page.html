@@ -6,5 +6,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-item *ngFor = "let review of (reviews | async)">
+    <ion-label>{{review.rating}}</ion-label>
+    <ion-label>{{review.message}}</ion-label>
 
+  </ion-item>
 </ion-content>

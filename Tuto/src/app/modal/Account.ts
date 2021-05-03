@@ -34,5 +34,6 @@ export interface Review {
   id?: any;
   rating: any;
   message: string;
-  uid: string;
+  suid: string;
+  tuid: string;
 }
