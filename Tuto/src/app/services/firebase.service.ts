@@ -56,6 +56,18 @@ export class FirebaseService {
           });
         })
     );
+
+    //Sets up Reviews
+    this.reviewsCollection = this.afs.collection<Review>('reviews');
+    this.reviews = this.reviewsCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+    );
   }
 
   load_fav_tutors(){
@@ -76,8 +88,8 @@ export class FirebaseService {
   }
 
   load_reviews(uid: string){
-    //var user = firebase.auth().currentUser;
-    //var uid=user.uid;
+    var user = firebase.auth().currentUser;
+    var uid=user.uid;
     this.reviewsCollection = this.afs.collection<Review>('reviews',ref => ref.where('uid', '==', uid));
 
     this.reviews = this.reviewsCollection.snapshotChanges().pipe(
@@ -108,6 +120,7 @@ export class FirebaseService {
     tutor.uid = this.uid
     return this.favTutorCollection.add(tutor);
   }
+
   checkIfFavorited(temp_tutor: Tutor){
     console.log("temp_tutor uid: " + temp_tutor.uid)
     this.favTutors.forEach(tutors=>{
@@ -121,6 +134,7 @@ export class FirebaseService {
     })
     return false;
   }
+
   getFavorites(): Observable<Tutor[]> {
     return this.favTutors;
   }
@@ -151,6 +165,17 @@ export class FirebaseService {
           return tutor;
         })
     );
+  }
+
+  // Returns specific belief
+  getReview(id: string): Observable<Review> {
+    return this.reviewsCollection.doc<Review>(id).valueChanges().pipe(
+        take(1),
+        map(review => {
+          review.id = id;
+          return review;
+        })
+    )
   }
 
   editStudent(student: Student): Promise<void> {

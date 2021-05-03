@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import {Account, Student, Tutor} from '../modal/Account'
+import {Account, Student, Tutor, Review} from '../modal/Account'
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import {Observable} from 'rxjs';
@@ -23,6 +23,13 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
   ownUser = false;
   starName = 'star-outline'
 
+  review: Review = {
+    id: '',
+    rating: '',
+    message: '',
+    uid: ''
+  }
+
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,17 +38,24 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     if(!id){
     console.log("am myself");
     console.log("subscribing data");
+    this.fbService.getReview(id).subscribe(reviewData => {
+      this.review = reviewData;
+    })
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
     this.ownUser = true;
   }
   }
+
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit")
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
       console.log("subscribing data");
+      this.fbService.getReview(id).subscribe(reviewData => {
+        this.review = reviewData;
+      })
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
@@ -54,11 +68,15 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
       }
     }
   }
+
   ionViewWillEnter(){
     console.log("ionViewWillEnter");
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
       console.log("subscribing data");
+      this.fbService.getReview(id).subscribe(reviewData => {
+        this.review = reviewData;
+      })
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
@@ -77,6 +95,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
         this.ownUser = true;
       }
   }
+
   ionViewDidEnter() {
     this.fbService.load_reviews(this.tutor.uid);
     console.log('ionViewDidEnter');
@@ -90,6 +109,7 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
       this.starName = "star-outline";
     }
   }
+
   favorited(){
     if(this.starName == "star-outline"){
       this.starName = "star"
