@@ -22,12 +22,18 @@ export class HomePage implements OnInit, AfterViewInit{
     const loading = await this.loadingController.create({
    cssClass: 'my-custom-class',
    message: 'Please wait...',
-   duration: 2000
+   duration: 1000
  });
  await loading.present();
   }
 
-  ionViewDidEnter(){
+  async ionViewDidEnter(){
+    const loading = await this.loadingController.create({
+   cssClass: 'my-custom-class',
+   message: 'Please wait...',
+   duration: 1200
+ });
+ await loading.present();
     console.log(this.fbService.getUsertype());
     if(this.fbService.getUsertype() == 'tutor'){
       this.router.navigate(['student-list'])
