@@ -15,7 +15,7 @@ export class SigninPage implements OnInit {
   hideMe = true;
 
   // Default demo user account
-  user = {email:"juanfmariscal1@gmail.com", password:"password"}
+  user = {email:"juandemo@email.com", password:"password"}
 
   constructor(public afAuth: AngularFireAuth,
     private fbService: FirebaseService,
