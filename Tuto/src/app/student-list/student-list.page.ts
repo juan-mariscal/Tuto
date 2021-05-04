@@ -20,5 +20,22 @@ export class StudentListPage implements OnInit {
     console.log("student-list page")
     this.students = this.fbService.getStudentList();
   }
-
+  goToMyProfile(){
+    if(this.fbService.getUsertype() == 'tutor'){
+      this.router.navigate(["tutor-profile"])
+    }
+    else{
+      this.router.navigate(["student-profile"])
+    }
+  }
+  logout() {
+    this.angularFire.signOut().then(() => {
+      console.log("Logging off...");
+      let user = this.angularFire.currentUser;
+      console.log(user);
+      this.fbService.uid = ''
+      
+      this.router.navigate(["/"]);
+    });
+  }
 }

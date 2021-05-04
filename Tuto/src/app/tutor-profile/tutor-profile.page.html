@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color = "medium">
     <ion-back-button slot = "start"></ion-back-button>
-    <ion-button slot = "start" [routerLink]="'/home'">
+    <!-- <ion-button slot = "start" [routerLink]="'/home'">
     <ion-icon name="home-outline"></ion-icon>
-    </ion-button>
+    </ion-button> -->
     <ion-title color = "dark">Your Account</ion-title>
     <ion-button slot = "end" (click) = "favorited()" *ngIf="!ownUser">
     <ion-icon name='{{starName}}'></ion-icon>

@@ -1,10 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-back-button slot = "start"></ion-back-button>
-    <ion-button slot = "start" [routerLink]="'/home'">
-      <ion-icon name="home-outline"></ion-icon>
+<ion-header color = "medium" [translucent]="true">
+  <ion-toolbar color = "medium">
+    <ion-button slot="start"(click) ="goToMyProfile()">
+      <ion-icon name="person-circle-outline"></ion-icon>
     </ion-button>
-    <ion-title>Student List</ion-title>
+     <ion-title> Home</ion-title>
+
+
+      <ion-button slot = "end"(click)="logout()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+        Logout
+      </ion-button>
+
   </ion-toolbar>
 </ion-header>
 

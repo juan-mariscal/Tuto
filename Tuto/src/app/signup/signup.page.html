@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" *ngIf="!hideMe" [routerLink]="'/home'">
+    <!-- <ion-button slot="start" *ngIf="!hideMe" [routerLink]="'/home'">
      <ion-icon name="home-outline"></ion-icon>
-    </ion-button>
-
-    <ion-button slot="start" *ngIf="hideMe" [routerLink]="'/welcome'">
+    </ion-button> -->
+    <ion-back-button slot = "start"></ion-back-button>
+    <!-- <ion-button slot="start" *ngIf="hideMe" [routerLink]="'/welcome'">
       <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button>
+    </ion-button> -->
 
     <ion-title>Sign Up</ion-title>
   </ion-toolbar>

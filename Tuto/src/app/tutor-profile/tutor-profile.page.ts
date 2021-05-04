@@ -43,9 +43,7 @@ export class TutorProfilePage implements OnInit, AfterViewInit {
     console.log("am myself");
     console.log("subscribing data");
     this.fbService.load_reviews(this.review.tuid)
-    this.fbService.getReview(id).subscribe(reviewData => {
-      this.review = reviewData;
-    })
+
     this.fbService.getTutor(this.fbService.getUserID()).subscribe(tutorData => {
           this.tutor = tutorData;
         });
@@ -61,9 +59,7 @@ export class TutorProfilePage implements OnInit, AfterViewInit {
     if(id) {
       this.fbService.load_reviews(this.review.tuid)
       console.log("subscribing data");
-      this.fbService.getReview(id).subscribe(reviewData => {
-        this.review = reviewData;
-      })
+
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
@@ -83,9 +79,7 @@ export class TutorProfilePage implements OnInit, AfterViewInit {
     if(id) {
       this.fbService.load_reviews(this.review.tuid)
       console.log("subscribing data");
-      this.fbService.getReview(id).subscribe(reviewData => {
-        this.review = reviewData;
-      })
+      
       this.fbService.getTutor(id).subscribe(tutorData => {
         this.tutor = tutorData;
       });
