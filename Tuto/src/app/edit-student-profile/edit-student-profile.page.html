@@ -1,27 +1,37 @@
 <ion-header>
   <ion-toolbar color = "medium">
+    <ion-back-button slot = "start"></ion-back-button>
+    <ion-button slot = "start" [routerLink]="'/home'">
+      <ion-icon name="home-outline"></ion-icon>
     <ion-title color = "dark">Edit Your Profile</ion-title>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color = "medium">
   <ion-list>
     <ion-item>
-      <ion-input placeholder="{{student.name}}" [(ngModel)]="student.name"></ion-input>
+      <ion-label color="primary" position="floating">Name</ion-label>
+      <ion-input placeholder="{{student.name}}" placeholder="Edit Name" [(ngModel)]="student.name"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Date of Birth</ion-label>
       <ion-input placeholder="{{student.dob}}" [(ngModel)]="student.dob"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Profile Picture URL</ion-label>
       <ion-input placeholder="{{student.pfp}}" [(ngModel)]="student.pfp"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Phone Number</ion-label>
       <ion-input placeholder="{{student.phone_number}}" [(ngModel)]="student.phone_number"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Email</ion-label>
       <ion-input placeholder="{{student.email}}" [(ngModel)]="student.email"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Description</ion-label>
       <ion-textarea rows="6" [(ngModel)]="student.message" placeholder="{{student.message}}"></ion-textarea>
     </ion-item>
   </ion-list>
