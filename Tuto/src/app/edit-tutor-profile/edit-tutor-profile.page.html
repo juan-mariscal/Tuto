@@ -7,21 +7,27 @@
 <ion-content color = "medium">
   <ion-list>
     <ion-item>
+      <ion-label color="primary" position="floating">Name</ion-label>
       <ion-input placeholder="{{tutor.name}}" [(ngModel)]="tutor.name"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Date of Birth</ion-label>
       <ion-input placeholder="{{tutor.dob}}" [(ngModel)]="tutor.dob"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Profile Picture URL</ion-label>
       <ion-input placeholder="{{tutor.pfp}}" [(ngModel)]="tutor.pfp"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Phone Number</ion-label>
       <ion-input placeholder="{{tutor.phone_number}}" [(ngModel)]="tutor.phone_number"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Email</ion-label>
       <ion-input placeholder="{{tutor.email}}" [(ngModel)]="tutor.email"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Description</ion-label>
       <ion-textarea rows="6" [(ngModel)]="tutor.message" placeholder="{{tutor.message}}"></ion-textarea>
     </ion-item>
   </ion-list>

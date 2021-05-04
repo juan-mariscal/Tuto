@@ -1,13 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "medium">
     <ion-back-button slot = "start"></ion-back-button>
-    <ion-button slot = "start" [routerLink]="'/home'"></ion-button>
+    <ion-button slot = "start" [routerLink]="'/home'">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-button>
     <ion-title>View Reviews</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item *ngFor = "let review of (reviews | async)">
+<ion-content color = "medium">
+  <ion-item color = "medium" *ngFor = "let review of (reviews | async)">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Review</ion-card-subtitle>

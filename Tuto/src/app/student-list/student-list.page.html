@@ -14,10 +14,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color = "medium">
   <ion-list>
 
-    <ion-item *ngFor="let student of (students | async)">
+    <ion-item color = "medium" *ngFor="let student of (students | async)">
       <ion-thumbnail slot="start">
         <ion-img [src]="student.pfp"></ion-img>
       </ion-thumbnail>

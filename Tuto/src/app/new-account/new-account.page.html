@@ -1,27 +1,33 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="medium">
     <ion-title>Set Up Your New Account!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="medium">
   <ion-list>
     <ion-item>
+      <ion-label color="primary" position="floating">Name</ion-label>
       <ion-input placeholder="Enter Name" [(ngModel)]="account.name"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Date of Birth</ion-label>
       <ion-input placeholder="Enter DOB (MM/DD/YYYY)" [(ngModel)]="account.dob"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Phone Number</ion-label>
       <ion-input placeholder="Enter Phone Number (XXX-XXX-XXXX)" [(ngModel)]="account.phone_number"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Email</ion-label>
       <ion-input placeholder="Enter Valid Email" [(ngModel)]="account.email"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Profile Picture URL</ion-label>
       <ion-input placeholder="Profile Picture" [(ngModel)]="account.pfp"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label color="primary" position="floating">Description</ion-label>
       <ion-textarea rows="6" [(ngModel)]="account.message" placeholder="Enter additional informaiton, caption, or description"></ion-textarea>
     </ion-item>
   </ion-list>
