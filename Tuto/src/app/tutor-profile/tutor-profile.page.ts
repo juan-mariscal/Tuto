@@ -8,8 +8,8 @@ import {Observable} from 'rxjs';
   templateUrl: './tutor-profile.page.html',
   styleUrls: ['./tutor-profile.page.scss'],
 })
-export class TutorProfilePage implements OnInit,AfterViewInit {
-  //default src: http://s3.amazonaws.com/37assets/svn/765-default-avatar.png
+export class TutorProfilePage implements OnInit, AfterViewInit {
+
   tutor: Tutor = {
     id: '',
     name: '',
@@ -31,10 +31,13 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
     tuid:''
   }
 
+  private reviews: Observable<Review[]>;
+
   constructor(private fbService: FirebaseService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     console.log("ngOnInit")
+    this.reviews = this.fbService.getReviews();
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if(!id){
     console.log("am myself");
@@ -48,6 +51,8 @@ export class TutorProfilePage implements OnInit,AfterViewInit {
         });
     this.ownUser = true;
   }
+
+  //this.reviews = this.fbService.getReviews();
   }
 
   ngAfterViewInit(): void {

@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "medium">
+    <ion-back-button slot = "start"></ion-back-button>
     <ion-button slot = "start" [routerLink]="'/home'">
       <ion-icon name="home-outline"></ion-icon>
     </ion-button>
@@ -7,10 +8,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color = "medium">
   <ion-list>
 
-    <ion-item *ngFor="let tutor of (tutors | async)">
+    <ion-item color = "medium" *ngFor="let tutor of (tutors | async)">
       <ion-thumbnail slot="start">
         <ion-img [src]="tutor.pfp"></ion-img>
       </ion-thumbnail>
