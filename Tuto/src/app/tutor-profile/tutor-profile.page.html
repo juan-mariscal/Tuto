@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "medium">
     <ion-button slot = "start" [routerLink]="'/home'">
     <ion-icon name="home-outline"></ion-icon>
     </ion-button>
-    <ion-title>Your Account</ion-title>
+    <ion-title color = "dark">Your Account</ion-title>
     <ion-button slot = "end" (click) = "favorited()" *ngIf="!ownUser">
     <ion-icon name='{{starName}}'></ion-icon>
     </ion-button>
@@ -11,12 +11,12 @@
 
 </ion-header>
 
-<ion-content>
-  <ion-item>
+<ion-content color = "medium">
+  <ion-item color = "medium">
     <ion-avatar slot="start">
       <img src="{{tutor.pfp}}">
     </ion-avatar>
-    <ion-label>{{tutor.name}}</ion-label>
+    <ion-label color = "dark">{{tutor.name}}</ion-label>
   </ion-item>
 
   <ion-card id="tutor-profile">

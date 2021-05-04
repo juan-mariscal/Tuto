@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "medium">
 
     <ion-button slot = "start" [routerLink]="'/home'">
     <ion-icon name="home-outline"></ion-icon>
     </ion-button>
 
-    <ion-title>Your Account</ion-title>
+    <ion-title color = "dark">Your Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
+<ion-content color = "medium">
+  <ion-item color = "medium">
     <ion-avatar slot="start">
       <img src="{{student.pfp}}">
     </ion-avatar>
-    <ion-label>{{student.name}}</ion-label>
+    <ion-label color = "dark">{{student.name}}</ion-label>
   </ion-item>
 
   <ion-card>

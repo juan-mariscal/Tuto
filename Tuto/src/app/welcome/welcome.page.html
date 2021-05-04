@@ -1,12 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
+<ion-header color = "medium">
+  <ion-toolbar color = "medium">
+    <ion-title size="large" color = "dark" >Welcome to Tuto!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  color = "medium">
+  <ion-item color = "primary">
+    <ion-textarea >
+      Need some help on an assignment? Join Tuto today as a student!
+    </ion-textarea>
+  </ion-item>
   <ion-grid>
+    <ion-row>
+      <ion-col>
     <ion-button [routerLink] = "'/signup'"> Sign Up </ion-button>
+    </ion-col>
+    <ion-col>
+      </ion-col>
+      <ion-col>
     <ion-button [routerLink] = "'/signin'"> Sign In </ion-button>
+    </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

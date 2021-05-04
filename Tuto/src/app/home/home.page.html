@@ -1,25 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
+<ion-header color = "medium" [translucent]="true">
+  <ion-toolbar color = "medium">
+    <ion-button slot="start"(click) ="goToMyProfile()">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-button>
+    <!-- <ion-title> Home</ion-title> -->
 
-    <ion-buttons slot="end" *ngIf="!hideMe">
-      <ion-button (click)="logout()">
+
+      <ion-button slot = "end"(click)="logout()">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
         Logout
       </ion-button>
-    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content color = "medium" [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
+    <ion-toolbar color = "medium">
+      <ion-title size="large" color = "dark">Home</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-button [routerLink]="'/student-list'">Student List</ion-button>
   <ion-button [routerLink]="'/tutor-list'">Tutor List</ion-button>
-  <ion-button [routerLink]="'/student-profile'">Student Profile</ion-button>
-  <ion-button [routerLink]="'/tutor-profile'">Tutor Profile</ion-button>
+
 </ion-content>

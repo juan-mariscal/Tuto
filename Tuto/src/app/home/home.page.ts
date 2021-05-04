@@ -14,7 +14,7 @@ export class HomePage {
 
   constructor(private router: Router, public fbService: FirebaseService,
     public angularFire: AngularFireAuth) {}
-  
+
   logout() {
     this.angularFire.signOut().then(() => {
       console.log("Logging off...");
@@ -24,5 +24,13 @@ export class HomePage {
       this.hideMe = true;
       this.router.navigate(["/"]);
     });
+  }
+  goToMyProfile(){
+    if(this.fbService.getUsertype() == 'tutor'){
+      this.router.navigate(["tutor-profile"])
+    }
+    else{
+      this.router.navigate(["student-profile"])
+    }
   }
 }

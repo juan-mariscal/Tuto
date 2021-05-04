@@ -7,8 +7,20 @@
 
 <ion-content>
   <ion-item *ngFor = "let review of (reviews | async)">
-    <ion-label>{{review.rating}}</ion-label>
-    <ion-label>{{review.message}}</ion-label>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Review</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          Rating: {{review.rating}}
+        </ion-item>
+        <ion-item>
+          {{review.message}}
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
 
   </ion-item>
 </ion-content>
